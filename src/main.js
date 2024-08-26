@@ -9,6 +9,7 @@ const addLine = () => console.log("add line");
 const cleanAll = () => console.log("clean all");
 
 const drawingBoard = new DrawingBoard("main");
+console.log("drawingBoard: ", drawingBoard);
 
 const menu = new Menu("aside");
 menu.add("button.addLine", addLine);
