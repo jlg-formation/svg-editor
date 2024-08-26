@@ -3,14 +3,16 @@ import { Header } from "./Header";
 import { Menu } from "./Menu";
 import { Mode } from "./Mode";
 import "./style.css";
+import { Line } from "./widget/Line";
 
 new Header().setTitle("The SVG Editor");
 
-const addLine = () => console.log("add line");
-const cleanAll = () => console.log("clean all");
+const board = new DrawingBoard("main");
 
-const drawingBoard = new DrawingBoard("main");
-console.log("drawingBoard: ", drawingBoard);
+const addLine = () => {
+  board.prepareForInsert(new Line(board));
+};
+const cleanAll = () => console.log("clean all");
 
 const menu = new Menu("aside");
 menu.add("button.addLine", addLine);
