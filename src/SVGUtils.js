@@ -15,4 +15,15 @@ export class SVGUtils {
     const y = event.clientY - dim.top;
     return { x, y };
   }
+
+  /**
+   * @param {SVGElement} parent
+   * @param {string} name
+   */
+  static addGroup(parent, name) {
+    const group = document.createElementNS(SVGNS, "g");
+    group.setAttribute("class", name);
+    parent.appendChild(group);
+    return group;
+  }
 }

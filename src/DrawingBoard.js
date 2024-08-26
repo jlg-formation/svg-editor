@@ -1,5 +1,10 @@
 import { Mode, printMode } from "./Mode";
-import { querySelector, querySelectorFromElt } from "./utils";
+import { SVGUtils } from "./SVGUtils";
+import {
+  querySelector,
+  querySelectorFromElt,
+  querySelectorSvgFromElt,
+} from "./utils";
 
 export class DrawingBoard {
   /**
@@ -13,7 +18,12 @@ export class DrawingBoard {
 
     // initializing to SVG and mode DIV.
     this.elt.innerHTML = '<svg></svg><div class="mode"></div>';
-    this.svg = querySelectorFromElt(this.elt, "svg");
+    this.svg = querySelectorSvgFromElt(this.elt);
+
+    // adding 3 groups for the editor :
+    this.content = SVGUtils.addGroup(this.svg, "content"); // where the real SVG stuff are
+    this.selectable = SVGUtils.addGroup(this.svg, "selectable"); // the selection areas
+    this.edition = SVGUtils.addGroup(this.svg, "edition"); // where the edition points will be
 
     this.modeElt = querySelectorFromElt(this.elt, ".mode");
     this.mode = Mode.DEFAULT;

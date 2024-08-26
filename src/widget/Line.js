@@ -26,7 +26,7 @@ export class Line extends Widget {
     line.setAttribute("y1", "" + this.y1);
     line.setAttribute("y2", "" + this.y2);
     line.setAttribute("stroke", "black");
-    this.board.svg.appendChild(line);
+    this.board.content.appendChild(line);
     this.elt = line;
   }
 }

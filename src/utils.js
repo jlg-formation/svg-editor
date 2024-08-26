@@ -26,3 +26,17 @@ export const querySelectorFromElt = (element, selector) => {
   // @ts-ignore
   return elt;
 };
+
+/**
+ *
+ * @param {HTMLElement} element
+ * @return {SVGElement}
+ */
+export const querySelectorSvgFromElt = (element) => {
+  const elt = element.querySelector("svg");
+  if (elt === null) {
+    throw new Error(`Cannot find selector svg`);
+  }
+  // @ts-ignore
+  return elt;
+};
