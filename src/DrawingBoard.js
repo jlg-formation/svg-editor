@@ -17,6 +17,16 @@ export class DrawingBoard {
 
     this.modeElt = querySelectorFromElt(this.elt, ".mode");
     this.mode = Mode.DEFAULT;
+
+    this.svg.addEventListener("click", (event) => {
+      if (this.widget) {
+        if (this.mode === Mode.WIDGET_INSERT) {
+          this.widget.depose(event);
+          this.mode = Mode.DEFAULT;
+          return;
+        }
+      }
+    });
   }
 
   set mode(val) {

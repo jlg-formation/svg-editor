@@ -7,4 +7,11 @@ export class Line extends Widget {
   constructor(board) {
     super(board);
   }
+
+  /**
+   * @param {MouseEvent} event
+   */
+  depose(event) {
+    console.log("event: ", event);
+  }
 }
