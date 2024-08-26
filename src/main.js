@@ -1,6 +1,7 @@
 import { DrawingBoard } from "./DrawingBoard";
 import { Header } from "./Header";
 import { Menu } from "./Menu";
+import { Mode } from "./Mode";
 import "./style.css";
 
 new Header().setTitle("The SVG Editor");
@@ -14,3 +15,7 @@ console.log("drawingBoard: ", drawingBoard);
 const menu = new Menu("aside");
 menu.add("button.addLine", addLine);
 menu.add("button.clean", cleanAll);
+
+for (const mode of Mode) {
+  console.log("mode: ", mode);
+}
