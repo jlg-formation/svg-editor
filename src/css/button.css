@@ -1,0 +1,18 @@
+button {
+  border: 0.1rem solid #eee;
+  background: #eee;
+  padding: 0.5em;
+  cursor: pointer;
+
+  &:not(:disabled) {
+    &:hover {
+      border: 0.1rem solid #ddd;
+      background: #ddd;
+    }
+
+    &:active {
+      border: 0.1rem solid #ccc;
+      background: #ccc;
+    }
+  }
+}
