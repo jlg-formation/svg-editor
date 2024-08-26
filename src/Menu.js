@@ -1,9 +1,11 @@
+import { querySelector, querySelectorFromElt } from "./utils";
+
 export class Menu {
   /**
    * @param {string} eltName
    */
   constructor(eltName) {
-    this.elt = document.querySelector(eltName);
+    this.elt = querySelector(eltName);
   }
 
   /**
@@ -11,6 +13,9 @@ export class Menu {
    * @param {() => void} callback
    */
   add(selector, callback) {
-    this.elt.querySelector(selector).addEventListener("click", callback);
+    querySelectorFromElt(this.elt, selector).addEventListener(
+      "click",
+      callback,
+    );
   }
 }

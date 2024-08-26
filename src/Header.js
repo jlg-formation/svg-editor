@@ -1,9 +1,7 @@
-export class Header {
-  constructor() {
-    this.elt = document.querySelector("header");
-  }
+import { querySelector } from "./utils";
 
+export class Header {
   setTitle(title) {
-    this.elt.querySelector(".title").innerHTML = title;
+    querySelector("header .title").innerHTML = title;
   }
 }
