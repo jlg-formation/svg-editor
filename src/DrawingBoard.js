@@ -1,4 +1,4 @@
-import { Mode } from "./Mode";
+import { Mode, printMode } from "./Mode";
 import { querySelector, querySelectorFromElt } from "./utils";
 
 export class DrawingBoard {
@@ -21,7 +21,7 @@ export class DrawingBoard {
 
   set mode(val) {
     this.privateMode = val;
-    this.modeElt.innerHTML = this.privateMode.toUpperCase();
+    this.modeElt.innerHTML = printMode`Actual Mode is ${this.privateMode}`;
 
     // set the right class on the component visual.
     // remove any class reflecting the mode

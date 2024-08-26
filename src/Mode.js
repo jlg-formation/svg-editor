@@ -13,3 +13,15 @@ export class Mode {
     }
   }
 }
+
+// custom template
+/**
+ *
+ *
+ * @param {TemplateStringsArray} strings
+ * @param {string} mode
+ * @return {*}
+ */
+export const printMode = (strings, mode) => {
+  return strings[0] + mode.toUpperCase();
+};
