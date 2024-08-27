@@ -37,6 +37,7 @@ export class DrawingBoard {
         if (this.mode === Mode.WIDGET_INSERT) {
           this.widget.depose(event);
           this.mode = Mode.DEFAULT;
+          this.widget = undefined;
           return;
         }
         if (this.mode === Mode.WIDGET_SELECTED) {
@@ -85,7 +86,7 @@ export class DrawingBoard {
       // important for not unselecting just after selecting.
       event.stopPropagation();
 
-      if (this.mode === Mode.WIDGET_SELECTED) {
+      if (this.widget === widget) {
         this.unselect();
         return;
       }
