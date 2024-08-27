@@ -140,4 +140,11 @@ export class DrawingBoard {
     }
     return result;
   }
+
+  clean() {
+    this.mode = Mode.DEFAULT;
+    SVGUtils.removeAllChildren(this.content);
+    SVGUtils.removeAllChildren(this.selectable);
+    SVGUtils.removeAllChildren(this.edition);
+  }
 }

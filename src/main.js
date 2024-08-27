@@ -12,7 +12,7 @@ const board = new DrawingBoard("main");
 const addLine = () => {
   board.prepareForInsert(new Line(board));
 };
-const cleanAll = () => console.log("clean all");
+const cleanAll = () => board.clean();
 
 const menu = new Menu("aside");
 menu.add("button.addLine", addLine);
