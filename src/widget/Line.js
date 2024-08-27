@@ -28,5 +28,22 @@ export class Line extends Widget {
     line.setAttribute("stroke", "black");
     this.board.content.appendChild(line);
     this.elt = line;
+
+    // selectable
+    const selectableLine = document.createElementNS(SVGNS, "line");
+    selectableLine.setAttribute("x1", "" + this.x1);
+    selectableLine.setAttribute("x2", "" + this.x2);
+    selectableLine.setAttribute("y1", "" + this.y1);
+    selectableLine.setAttribute("y2", "" + this.y2);
+    selectableLine.setAttribute("stroke", "hsla(120, 100%, 50%, 0.2)");
+    selectableLine.setAttribute("stroke-width", "20");
+    selectableLine.setAttribute("stroke-linecap", "round");
+    selectableLine.setAttribute("fill", "transparent");
+    selectableLine.addEventListener("click", () => {
+      console.log("toggle select/unselect");
+    });
+
+    this.board.selectable.appendChild(selectableLine);
+    this.selectableElt = selectableLine;
   }
 }
