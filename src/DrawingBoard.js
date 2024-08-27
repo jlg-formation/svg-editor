@@ -63,4 +63,37 @@ export class DrawingBoard {
     this.mode = Mode.WIDGET_INSERT;
     this.widget = widget;
   }
+
+  /**
+   * @param {import('./widget/Widget').Widget} widget
+   */
+  selectEditionMode(widget) {
+    return (/** @type {Event} */ event) => {
+      // important for not unselecting just after selecting.
+      event.stopPropagation();
+
+      if (this.mode === Mode.WIDGET_SELECTED) {
+        this.unselect();
+        return;
+      }
+      this.select(widget);
+    };
+  }
+
+  /**
+   * @param {import('./widget/Widget').Widget} widget
+   */
+  select(widget) {
+    this.mode = Mode.WIDGET_SELECTED;
+    this.widget = widget;
+    this.widget.select();
+  }
+
+  unselect() {
+    this.mode = Mode.DEFAULT;
+    if (this.widget) {
+      this.widget.unselect();
+    }
+    this.widget = undefined;
+  }
 }

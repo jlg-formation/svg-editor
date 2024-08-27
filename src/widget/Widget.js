@@ -15,4 +15,12 @@ export class Widget {
   depose(_event) {
     throw new Error("Cannot call an abstract method");
   }
+
+  select() {
+    throw new Error("Cannot call an abstract method");
+  }
+
+  unselect() {
+    throw new Error("Cannot call an abstract method");
+  }
 }

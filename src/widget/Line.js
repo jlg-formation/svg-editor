@@ -39,11 +39,20 @@ export class Line extends Widget {
     selectableLine.setAttribute("stroke-width", "20");
     selectableLine.setAttribute("stroke-linecap", "round");
     selectableLine.setAttribute("fill", "transparent");
-    selectableLine.addEventListener("click", () => {
-      console.log("toggle select/unselect");
-    });
+    selectableLine.addEventListener(
+      "click",
+      this.board.selectEditionMode(this),
+    );
 
     this.board.selectable.appendChild(selectableLine);
     this.selectableElt = selectableLine;
+  }
+
+  select() {
+    console.log("about to select line");
+  }
+
+  unselect() {
+    console.log("about to unselect line");
   }
 }
