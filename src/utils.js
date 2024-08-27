@@ -40,3 +40,6 @@ export const querySelectorSvgFromElt = (element) => {
   // @ts-ignore
   return elt;
 };
+
+export const sleep = (/** @type {number} */ time) =>
+  new Promise((resolve) => setTimeout(resolve, time));

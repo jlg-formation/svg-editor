@@ -5,7 +5,7 @@ import { Mode } from "./Mode";
 import "./style.css";
 import { Line } from "./widget/Line";
 
-new Header().setTitle("The SVG Editor");
+new Header("header").setTitle("The SVG Editor");
 
 const board = new DrawingBoard("main");
 
