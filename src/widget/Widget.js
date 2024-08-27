@@ -43,4 +43,12 @@ export class Widget {
   edit(_pointName, _orig, _delta) {
     throw new Error("Cannot call an abstract method");
   }
+
+  /**
+   * @param {Widget} _orig
+   * @param {{ x: number; y: number; }} _delta
+   */
+  move(_orig, _delta) {
+    throw new Error("Cannot call an abstract method");
+  }
 }

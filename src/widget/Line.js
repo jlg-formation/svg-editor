@@ -1,5 +1,6 @@
 import { SVGNS, SVGUtils } from "../SVGUtils";
 import { WidgetEdit } from "../WidgetEdit";
+import { WidgetMove } from "../WidgetMove";
 import { Widget } from "./Widget";
 
 export class Line extends Widget {
@@ -47,6 +48,10 @@ export class Line extends Widget {
     selectableLine.addEventListener(
       "click",
       this.board.selectEditionMode(this),
+    );
+    selectableLine.addEventListener(
+      "mousedown",
+      new WidgetMove(this).getMoveCallback(),
     );
 
     this.board.selectable.appendChild(selectableLine);
@@ -111,5 +116,35 @@ export class Line extends Widget {
       const editionPoint = this.board.getEditionPoint(pointName);
       editionPoint.edit(this.x2, this.y2);
     }
+  }
+
+  /**
+   * @param {Line} orig
+   * @param {{ x: number; y: number; }} delta
+   */
+  move(orig, delta) {
+    this.unselect();
+    console.log("orig: ", orig);
+    console.log("delta: ", delta);
+    this.x1 = delta.x + orig.x1;
+    this.y1 = delta.y + orig.y1;
+    this.x2 = delta.x + orig.x2;
+    this.y2 = delta.y + orig.y2;
+    const line = this.elt;
+    if (line === undefined) {
+      return;
+    }
+    line.setAttribute("x1", "" + this.x1);
+    line.setAttribute("y1", "" + this.y1);
+    line.setAttribute("x2", "" + this.x2);
+    line.setAttribute("y2", "" + this.y2);
+    const sline = this.selectableElt;
+    if (sline === undefined) {
+      return;
+    }
+    sline.setAttribute("x1", "" + this.x1);
+    sline.setAttribute("y1", "" + this.y1);
+    sline.setAttribute("x2", "" + this.x2);
+    sline.setAttribute("y2", "" + this.y2);
   }
 }
