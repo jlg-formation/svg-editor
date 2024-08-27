@@ -39,6 +39,15 @@ export class DrawingBoard {
           this.mode = Mode.DEFAULT;
           return;
         }
+        if (this.mode === Mode.WIDGET_SELECTED) {
+          this.widget.unselect();
+          this.mode = Mode.DEFAULT;
+          return;
+        }
+      }
+      if (this.mode === Mode.WIDGET_EDITING) {
+        this.mode = Mode.WIDGET_SELECTED;
+        return;
       }
     });
   }
