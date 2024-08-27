@@ -44,6 +44,7 @@ export class Line extends Widget {
     selectableLine.setAttribute("stroke-width", "20");
     selectableLine.setAttribute("stroke-linecap", "round");
     selectableLine.setAttribute("fill", "transparent");
+    selectableLine.setAttribute("class", "clickable");
     selectableLine.addEventListener(
       "click",
       this.board.selectEditionMode(this),
