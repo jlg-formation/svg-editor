@@ -119,4 +119,15 @@ export class DrawingBoard {
     this.edition.appendChild(editionPoint.group);
     this.editionMap.set(label, editionPoint);
   }
+
+  /**
+   * @param {string} label
+   */
+  getEditionPoint(label) {
+    const result = this.editionMap.get(label);
+    if (result === undefined) {
+      throw new Error(`Cannot get edition point: ${label}`);
+    }
+    return result;
+  }
 }

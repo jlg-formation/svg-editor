@@ -1,4 +1,5 @@
 import { SVGNS, SVGUtils } from "../SVGUtils";
+import { WidgetEdit } from "../WidgetEdit";
 import { Widget } from "./Widget";
 
 export class Line extends Widget {
@@ -7,6 +8,10 @@ export class Line extends Widget {
    */
   constructor(board) {
     super(board);
+    this.x1 = 0;
+    this.y1 = 0;
+    this.x2 = 0;
+    this.y2 = 0;
   }
 
   /**
@@ -55,16 +60,56 @@ export class Line extends Widget {
     this.board.removeAllEditionPoints();
 
     // add edition points to 2 extremities.
-    this.board.addEditionPoint("start", this.x1, this.y1, () =>
-      console.log("moving"),
+    this.board.addEditionPoint(
+      "start",
+      this.x1,
+      this.y1,
+      new WidgetEdit(this, "start").getEditCallback(),
     );
-    this.board.addEditionPoint("end", this.x2, this.y2, () =>
-      console.log("moving"),
+    this.board.addEditionPoint(
+      "end",
+      this.x2,
+      this.y2,
+      new WidgetEdit(this, "end").getEditCallback(),
     );
   }
 
   unselect() {
     console.log("about to unselect line");
     this.board.removeAllEditionPoints();
+  }
+
+  /**
+   * @param {string} pointName
+   * @param {Line} orig
+   * @param {{ x: number; y: number; }} delta
+   */
+  edit(pointName, orig, delta) {
+    console.log("pointName: ", pointName);
+    console.log("orig: ", orig);
+    console.log("delta: ", delta);
+    if (this.elt === undefined || this.selectableElt === undefined) {
+      return;
+    }
+    if (pointName === "start") {
+      this.x1 = delta.x + orig.x1;
+      this.y1 = delta.y + orig.y1;
+      this.elt.setAttribute("x1", "" + this.x1);
+      this.elt.setAttribute("y1", "" + this.y1);
+      this.selectableElt.setAttribute("x1", "" + this.x1);
+      this.selectableElt.setAttribute("y1", "" + this.y1);
+      const editionPoint = this.board.getEditionPoint(pointName);
+      editionPoint.edit(this.x1, this.y1);
+    }
+    if (pointName === "end") {
+      this.x2 = delta.x + orig.x2;
+      this.y2 = delta.y + orig.y2;
+      this.elt.setAttribute("x2", "" + this.x2);
+      this.elt.setAttribute("y2", "" + this.y2);
+      this.selectableElt.setAttribute("x2", "" + this.x2);
+      this.selectableElt.setAttribute("y2", "" + this.y2);
+      const editionPoint = this.board.getEditionPoint(pointName);
+      editionPoint.edit(this.x2, this.y2);
+    }
   }
 }
