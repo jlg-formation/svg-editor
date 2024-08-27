@@ -1,3 +1,4 @@
+import { EditionPoint } from "./EditionPoint";
 import { Mode, printMode } from "./Mode";
 import { SVGUtils } from "./SVGUtils";
 import {
@@ -24,6 +25,9 @@ export class DrawingBoard {
     this.content = SVGUtils.addGroup(this.svg, "content"); // where the real SVG stuff are
     this.selectable = SVGUtils.addGroup(this.svg, "selectable"); // the selection areas
     this.edition = SVGUtils.addGroup(this.svg, "edition"); // where the edition points will be
+
+    /** @type {Map<String, EditionPoint>} */
+    this.editionMap = new Map();
 
     this.modeElt = querySelectorFromElt(this.elt, ".mode");
     this.mode = Mode.DEFAULT;
@@ -95,5 +99,24 @@ export class DrawingBoard {
       this.widget.unselect();
     }
     this.widget = undefined;
+  }
+
+  removeAllEditionPoints() {
+    SVGUtils.removeAllChildren(this.edition);
+  }
+
+  /**
+   * @param {string} label
+   * @param {number} x
+   * @param {number} y
+   * @param {() => void} onMouseDownFn
+   */
+  addEditionPoint(label, x, y, onMouseDownFn) {
+    const editionPoint = new EditionPoint(x, y, {
+      label,
+      onMouseDownFn,
+    });
+    this.edition.appendChild(editionPoint.group);
+    this.editionMap.set(label, editionPoint);
   }
 }

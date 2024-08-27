@@ -50,9 +50,21 @@ export class Line extends Widget {
 
   select() {
     console.log("about to select line");
+
+    // reset the existing selected widget if any.
+    this.board.removeAllEditionPoints();
+
+    // add edition points to 2 extremities.
+    this.board.addEditionPoint("start", this.x1, this.y1, () =>
+      console.log("moving"),
+    );
+    this.board.addEditionPoint("end", this.x2, this.y2, () =>
+      console.log("moving"),
+    );
   }
 
   unselect() {
     console.log("about to unselect line");
+    this.board.removeAllEditionPoints();
   }
 }

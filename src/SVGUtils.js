@@ -26,4 +26,13 @@ export class SVGUtils {
     parent.appendChild(group);
     return group;
   }
+
+  /**
+   * @param {SVGGElement} group
+   */
+  static removeAllChildren(group) {
+    while (group.firstChild) {
+      group.removeChild(group.firstChild);
+    }
+  }
 }

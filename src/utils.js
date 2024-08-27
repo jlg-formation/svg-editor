@@ -14,9 +14,9 @@ export const querySelector = (selector) => {
 
 /**
  *
- * @param {HTMLElement} element
+ * @param {Element} element
  * @param {string} selector
- * @return {HTMLElement}
+ * @return {Element}
  */
 export const querySelectorFromElt = (element, selector) => {
   const elt = element.querySelector(selector);
@@ -29,7 +29,7 @@ export const querySelectorFromElt = (element, selector) => {
 
 /**
  *
- * @param {HTMLElement} element
+ * @param {Element} element
  * @return {SVGElement}
  */
 export const querySelectorSvgFromElt = (element) => {
